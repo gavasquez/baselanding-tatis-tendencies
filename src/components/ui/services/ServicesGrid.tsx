@@ -19,18 +19,18 @@ export default function ServicesGrid( { service, siteColor }: Props ) {
       } }
     >
       <div className="flex justify-center items-center">
-        <div className="w-48 h-48 bg-indigo-600/5 rounded-xl text-3xl flex justify-center items-center shadow-sm shadow-gray-800">
-          { mediaUrl &&
-            <Image
-              src={ mediaUrl ? mediaUrl : '/uploads/no-image.jpg' }
-              alt={ title }
-              width={ 300 }
-              height={ 300 }
-              className="w-full h-full object-cover rounded-xl"
-            />
-          }
+          <div className="w-48 h-48 bg-indigo-600/5 rounded-xl text-3xl flex justify-center items-center shadow-sm shadow-gray-800">
+            { mediaUrl &&
+              <Image
+                src={ mediaUrl ? mediaUrl : '/uploads/no-image.jpg' }
+                alt={ title }
+                width={ 192 }
+                height={ 192 }
+                className="w-full h-full object-cover rounded-xl"
+              />
+            }
+          </div>
         </div>
-      </div>
 
 
       <div className="content mt-7">
