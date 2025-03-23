@@ -26,7 +26,7 @@ export default function ServicesGrid( { service, siteColor }: Props ) {
               alt={ title }
               width={ 300 }
               height={ 300 }
-              className="object-cover max-w-full max-h-full rounded-xl"
+              className="w-full h-full object-cover rounded-xl"
             />
           }
         </div>
