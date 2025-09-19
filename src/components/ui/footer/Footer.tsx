@@ -29,7 +29,7 @@ interface Props {
   } | null;
 }
 
-export default function Footer( { id, siteName, logoUrl, footer, description, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, tiktokUrl, siteColor, siteColorText, policyPrivacyText }: Props ) {
+export default function Footer({ id, siteName, logoUrl, footer, description, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, tiktokUrl, siteColor, siteColorText, policyPrivacyText }: Props) {
 
   const { address = '', phoneNumber = '', map_iframe = '' } = footer || {};
   const colorText = siteColorText || '#FFFFFF';
@@ -37,198 +37,170 @@ export default function Footer( { id, siteName, logoUrl, footer, description, fa
 
   return (
     <div>
-      <footer className="footer relative text-gray-200 shadow-footer-strong bg-slate-900" style={ { backgroundColor: siteColor || '#000' } }>
-        <div className="container relative">
-          <div className="grid grid-cols-12">
-            <div className="col-span-12">
-              <div className="py-[30px] px-0">
-                <div className="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
-                  <div className="lg:col-span-4 md:col-span-12">
-
-                    <div className="flex items-center justify-start space-x-2">
-                      <Link href="/#" className="text-[22px] focus:outline-none">
-                        <Image src={ logoUrl ? logoUrl : '/uploads/favicon.ico' } width={ 50 } height={ 50 } alt={ description ? description : 'Logo de la web' } />
-                      </Link>
-                      <h1 className="text-center mt-2" style={ { color: colorText } }>{ siteName ? siteName : 'Nombre del sitio' }</h1>
-                    </div>
-                    <ContenidoDynamico text={ descripcionSite! } colorText={ colorText } />
-                  </div>
-
-                  <div className="lg:col-span-4 md:col-span-12 grid items-center">
-                    <div className="text-center">
-                      <h6 className="tracking-[0px] font-semibold" style={ { color: colorText } }>
-                        Dirección: { address ? address : 'No se ha cargado ninguna dirección' }
-                      </h6>
-                      <h6 className="tracking-[0px] font-semibold mt-5" style={ { color: colorText } }>
-                        Teléfono: { phoneNumber ? phoneNumber : 'No se ha cargado ningun número de teléfono' }
-                      </h6>
-                    </div>
-                  </div>
-                  {/* Mapa de Google */}
-                  <div className="lg:col-span-4 md:col-span-12 grid items-center">
-                    { map_iframe && (
-                      <div
-                        dangerouslySetInnerHTML={ { __html: map_iframe } }
-                        className="w-full h-[300px] md:h-[200px] rounded-md overflow-hidden"
-                      ></div>
-                    ) }
-                  </div>
-
-                </div>
+      <footer
+        className="relative bg-slate-900 text-gray-200"
+        style={{ backgroundColor: siteColor || "#000" }}
+      >
+        <div className="container relative py-14 md:py-10">
+          <div className="grid md:grid-cols-12 grid-cols-1 gap-12">
+            {/* Logo + descripción */}
+            <div className="lg:col-span-4 md:col-span-12 flex flex-col space-y-5">
+              <div className="flex items-center space-x-4">
+                <Link href="/#" className="focus:outline-none">
+                  <Image
+                    src={logoUrl ? logoUrl : "/uploads/favicon.ico"}
+                    width={64}
+                    height={64}
+                    alt={description ? description : "Logo de la web"}
+                  />
+                </Link>
+                <h1
+                  className="text-2xl md:text-3xl font-bold tracking-wide"
+                  style={{ color: colorText }}
+                >
+                  {siteName ? siteName : "Nombre del sitio"}
+                </h1>
               </div>
+              <p className="text-base leading-relaxed" style={{ color: colorText }}>
+                <ContenidoDynamico text={descripcionSite!} colorText={colorText} />
+              </p>
+            </div>
+
+            {/* Dirección y contacto */}
+            <div className="lg:col-span-4 md:col-span-6 flex flex-col justify-center items-center text-center space-y-4">
+              <h6
+                className="text-lg font-semibold"
+                style={{ color: colorText }}
+              >
+                📍 {address || "No se ha cargado ninguna dirección"}
+              </h6>
+              <h6
+                className="text-lg font-semibold"
+                style={{ color: colorText }}
+              >
+                ☎ +57 {phoneNumber || "No se ha cargado ningún número"}
+              </h6>
+            </div>
+
+            {/* Mapa con marcador centrado */}
+            <div className="lg:col-span-4 md:col-span-6">
+              {map_iframe && (
+                <div
+                  className="relative w-full h-[280px] md:h-[260px] rounded-2xl overflow-hidden shadow-xl ring-1 ring-slate-700"
+                  dangerouslySetInnerHTML={{
+                    __html: map_iframe.replace(/&zoom=\d+/, "&zoom=15"),
+                  }}
+                ></div>
+              )}
             </div>
           </div>
-          <div className="flex flex-row justify-center items-center py-[10px] gap-4">
-            {/* Facebook */ }
-            { facebookUrl && (
+
+          {/* Redes sociales */}
+          {/* Redes sociales */}
+          <div className="flex justify-center items-center mt-12 gap-6 flex-wrap">
+            {facebookUrl && (
               <Link
-                href={ facebookUrl }
+                href={facebookUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Síguenos en Facebook"
+                aria-label="Facebook"
                 title="Visitar nuestra página de Facebook"
-                className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                tabIndex={ 0 }
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 hover:scale-110 transition-all duration-300"
               >
-                <CiFacebook
-                  size={ 30 }
-                  className="hover:text-white transition-colors duration-200"
-                  style={ { color: colorText } }
-                  aria-hidden="true"
-                  role="img"
-                />
-                <span className="sr-only">Síguenos en Facebook</span>
+                <CiFacebook size={20} style={{ color: colorText }} />
               </Link>
-            ) }
-
-            {/* Twitter */ }
-            { twitterUrl && (
+            )}
+            {twitterUrl && (
               <Link
-                href={ twitterUrl }
+                href={twitterUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Síguenos en X (Twitter)"
-                title="Visitar nuestro perfil de X (Twitter)"
-                className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                tabIndex={ 0 }
+                aria-label="Twitter"
+                title="Visitar nuestro perfil de Twitter"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 hover:scale-110 transition-all duration-300"
               >
-                <FaXTwitter
-                  size={ 26 }
-                  className="hover:text-white transition-colors duration-200"
-                  style={ { color: colorText } }
-                  aria-hidden="true"
-                  role="img"
-                />
-                <span className="sr-only">Síguenos en X (Twitter)</span>
+                <FaXTwitter size={18} style={{ color: colorText }} />
               </Link>
-            ) }
-
-            {/* Instagram */ }
-            { instagramUrl && (
+            )}
+            {instagramUrl && (
               <Link
-                href={ instagramUrl }
+                href={instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Síguenos en Instagram"
+                aria-label="Instagram"
                 title="Visitar nuestro perfil de Instagram"
-                className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                tabIndex={ 0 }
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 hover:scale-110 transition-all duration-300"
               >
-                <CiInstagram
-                  size={ 30 }
-                  className="hover:text-white transition-colors duration-200"
-                  style={ { color: colorText } }
-                  aria-hidden="true"
-                  role="img"
-                />
-                <span className="sr-only">Síguenos en Instagram</span>
+                <CiInstagram size={20} style={{ color: colorText }} />
               </Link>
-            ) }
-
-            {/* LinkedIn */ }
-            { linkedinUrl && (
+            )}
+            {linkedinUrl && (
               <Link
-                href={ linkedinUrl }
+                href={linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Síguenos en LinkedIn"
+                aria-label="LinkedIn"
                 title="Visitar nuestro perfil de LinkedIn"
-                className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                tabIndex={ 0 }
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 hover:scale-110 transition-all duration-300"
               >
-                <CiLinkedin
-                  size={ 30 }
-                  className="hover:text-white transition-colors duration-200"
-                  style={ { color: colorText } }
-                  aria-hidden="true"
-                  role="img"
-                />
-                <span className="sr-only">Síguenos en LinkedIn</span>
+                <CiLinkedin size={20} style={{ color: colorText }} />
               </Link>
-            ) }
-
-            {/* YouTube */ }
-            { youtubeUrl && (
+            )}
+            {youtubeUrl && (
               <Link
-                href={ youtubeUrl }
+                href={youtubeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Síguenos en YouTube"
+                aria-label="YouTube"
                 title="Visitar nuestro canal de YouTube"
-                className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                tabIndex={ 0 }
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 hover:scale-110 transition-all duration-300"
               >
-                <CiYoutube
-                  size={ 30 }
-                  className="hover:text-white transition-colors duration-200"
-                  style={ { color: colorText } }
-                  aria-hidden="true"
-                  role="img"
-                />
-                <span className="sr-only">Síguenos en YouTube</span>
+                <CiYoutube size={20} style={{ color: colorText }} />
               </Link>
-            ) }
-
-            {/* TikTok */ }
-            { tiktokUrl && (
+            )}
+            {tiktokUrl && (
               <Link
-                href={ tiktokUrl }
+                href={tiktokUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Síguenos en TikTok"
+                aria-label="TikTok"
                 title="Visitar nuestro perfil de TikTok"
-                className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                tabIndex={ 0 }
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 hover:scale-110 transition-all duration-300"
               >
-                <FaTiktok
-                  size={ 26 }
-                  className="hover:text-white transition-colors duration-200"
-                  style={ { color: colorText } }
-                  aria-hidden="true"
-                  role="img"
-                />
-                <span className="sr-only">Síguenos en TikTok</span>
+                <FaTiktok size={18} style={{ color: colorText }} />
               </Link>
-            ) }
+            )}
           </div>
-          <div className="flex items-center  justify-center py-[10px] gap-4">
-            {
-              policyPrivacyText && ( <Link href={ `/policy-privacy/${ id }` } className="text-[16px] focus:outline-none" style={ { color: colorText } } target="_blank">
+
+          {/* Política de privacidad */}
+          {policyPrivacyText && (
+            <div className="flex justify-center mt-8">
+              <Link
+                href={`/policy-privacy/${id}`}
+                className="text-sm underline underline-offset-4 hover:text-gray-300 transition"
+                style={{ color: colorText }}
+                target="_blank"
+              >
                 Política de privacidad
-              </Link> )
-            }
-          </div>
-        </div>
-        <div className="py-[30px] px-0 border-t" style={ { borderColor: colorText } }>
-          <div className="container relative text-center">
-            <div className="grid items-center">
-              <Link href="https://narvaldreams.com" className="text-center" target="_blank">
-                <p className="mb-0" style={ { color: colorText } }>© { new Date().getFullYear() } Agencia de desarrollo web NarvalDreams <i className="mdi mdi-heart text-red-600"></i></p>
               </Link>
             </div>
-          </div>
+          )}
+        </div>
+
+        {/* Copyright */}
+        <div
+          className="py-6 border-t border-slate-700 text-center text-sm"
+          style={{ borderColor: colorText }}
+        >
+          <Link href="https://narvaldreams.com" target="_blank">
+            <p style={{ color: colorText }}>
+              © {new Date().getFullYear()} Agencia de desarrollo web NarvalDreams{" "}
+              <i className="mdi mdi-heart text-red-600"></i>
+            </p>
+          </Link>
         </div>
       </footer>
     </div>
+
   );
 }

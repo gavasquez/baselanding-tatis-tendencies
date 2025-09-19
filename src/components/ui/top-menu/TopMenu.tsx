@@ -23,7 +23,7 @@ interface Props {
   siteColorText: string | undefined | null;
 }
 
-export default function TopMenu( {
+export default function TopMenu({
   logoUrl,
   siteName,
   facebookUrl,
@@ -34,169 +34,120 @@ export default function TopMenu( {
   tiktokUrl,
   siteColor,
   siteColorText,
-}: Props ) {
+}: Props) {
   const colorText = siteColorText || "#FFFFFF";
 
   return (
     <nav
       id="topnav"
-      className="defaultscroll bg-slate-900 nav-sticky text-gray-200"
-      style={ { backgroundColor: siteColor || "#000" } }
+      className="fixed top-0 w-full z-50 backdrop-blur-md bg-black/70 border-b border-white/10 shadow-md transition-all duration-300"
+      style={{ backgroundColor: siteColor || "rgba(0,0,0,0.6)" }}
     >
-      <div className="container flex items-center justify-between py-4 flex-col sm:flex-row">
-        {/* Logo y Nombre del sitio */ }
-
-        <div className="flex items-end space-x-4 mb-4 sm:mb-0">
+      <div className="container mx-auto flex items-center justify-between py-4 px-6 flex-col sm:flex-row">
+        {/* Logo y Nombre del sitio */}
+        <div className="flex items-center space-x-4 mb-4 sm:mb-0">
           <Link className="logo" href="/">
             <CustomImage
-              src={ logoUrl! }
-              width={ 70 }
-              height={ 70 }
-              className="hidden dark:inline-block"
-              alt={ siteName ? siteName : "Logo" }
+              src={logoUrl!}
+              width={60}
+              height={60}
+              className="rounded-lg"
+              alt={siteName ? siteName : "Logo"}
             />
           </Link>
           <h1
-            className="text-3xl font-bold tracking-wide"
-            style={ { color: colorText } }
+            className="text-2xl sm:text-3xl font-bold tracking-wide drop-shadow-sm"
+            style={{ color: colorText }}
           >
-            { siteName ? siteName : "Nombre del sitio" }
+            {siteName ? siteName : "Nombre del sitio"}
           </h1>
         </div>
 
-        {/* Iconos de redes sociales */ }
-        <div className="flex items-center space-x-2 sm:space-x-4">
-          {/* Facebook */ }
-          { facebookUrl && (
+        {/* Iconos de redes sociales */}
+        <div className="flex items-center space-x-3 sm:space-x-4">
+          {/* Facebook */}
+          {facebookUrl && (
             <Link
-              href={ facebookUrl }
+              href={facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Síguenos en Facebook"
+              aria-label="Facebook"
               title="Visitar nuestra página de Facebook"
-              className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              tabIndex={ 0 }
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 hover:scale-110 transition-all duration-300"
             >
-              <CiFacebook
-                size={ 25 }
-                className="hover:text-white transition-colors duration-200"
-                style={ { color: colorText } }
-                aria-hidden="true"
-                role="img"
-              />
-              <span className="sr-only">Síguenos en Facebook</span>
+              <CiFacebook size={22} style={{ color: colorText }} />
             </Link>
-          ) }
+          )}
 
-          {/* Twitter */ }
-          { twitterUrl && (
+          {/* Twitter */}
+          {twitterUrl && (
             <Link
-              href={ twitterUrl }
+              href={twitterUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Síguenos en X (Twitter)"
+              aria-label="Twitter"
               title="Visitar nuestro perfil de X (Twitter)"
-              className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              tabIndex={ 0 }
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 hover:scale-110 transition-all duration-300"
             >
-              <FaXTwitter
-                size={ 20 }
-                className="hover:text-white transition-colors duration-200"
-                style={ { color: colorText } }
-                aria-hidden="true"
-                role="img"
-              />
-              <span className="sr-only">Síguenos en X (Twitter)</span>
+              <FaXTwitter size={20} style={{ color: colorText }} />
             </Link>
-          ) }
+          )}
 
-          {/* Instagram */ }
-          { instagramUrl && (
+          {/* Instagram */}
+          {instagramUrl && (
             <Link
-              href={ instagramUrl }
+              href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Síguenos en Instagram"
+              aria-label="Instagram"
               title="Visitar nuestro perfil de Instagram"
-              className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              tabIndex={ 0 }
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 hover:scale-110 transition-all duration-300"
             >
-              <CiInstagram
-                size={ 25 }
-                className="hover:text-white transition-colors duration-200"
-                style={ { color: colorText } }
-                aria-hidden="true"
-                role="img"
-              />
-              <span className="sr-only">Síguenos en Instagram</span>
+              <CiInstagram size={22} style={{ color: colorText }} />
             </Link>
-          ) }
+          )}
 
-          {/* LinkedIn */ }
-          { linkedinUrl && (
+          {/* LinkedIn */}
+          {linkedinUrl && (
             <Link
-              href={ linkedinUrl }
+              href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Síguenos en LinkedIn"
+              aria-label="LinkedIn"
               title="Visitar nuestro perfil de LinkedIn"
-              className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              tabIndex={ 0 }
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 hover:scale-110 transition-all duration-300"
             >
-              <CiLinkedin
-                size={ 25 }
-                className="hover:text-white transition-colors duration-200"
-                style={ { color: colorText } }
-                aria-hidden="true"
-                role="img"
-              />
-              <span className="sr-only">Síguenos en LinkedIn</span>
+              <CiLinkedin size={22} style={{ color: colorText }} />
             </Link>
-          ) }
+          )}
 
-          {/* YouTube */ }
-          { youtubeUrl && (
+          {/* YouTube */}
+          {youtubeUrl && (
             <Link
-              href={ youtubeUrl }
+              href={youtubeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Síguenos en YouTube"
+              aria-label="YouTube"
               title="Visitar nuestro canal de YouTube"
-              className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              tabIndex={ 0 }
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 hover:scale-110 transition-all duration-300"
             >
-              <CiYoutube
-                size={ 25 }
-                className="hover:text-white transition-colors duration-200"
-                style={ { color: colorText } }
-                aria-hidden="true"
-                role="img"
-              />
-              <span className="sr-only">Síguenos en YouTube</span>
+              <CiYoutube size={22} style={{ color: colorText }} />
             </Link>
-          ) }
+          )}
 
-          {/* TikTok */ }
-          { tiktokUrl && (
+          {/* TikTok */}
+          {tiktokUrl && (
             <Link
-              href={ tiktokUrl }
+              href={tiktokUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Síguenos en TikTok"
+              aria-label="TikTok"
               title="Visitar nuestro perfil de TikTok"
-              className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              tabIndex={ 0 }
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 hover:scale-110 transition-all duration-300"
             >
-              <FaTiktok
-                size={ 20 }
-                className="hover:text-white transition-colors duration-200"
-                style={ { color: colorText } }
-                aria-hidden="true"
-                role="img"
-              />
-              <span className="sr-only">Síguenos en TikTok</span>
+              <FaTiktok size={20} style={{ color: colorText }} />
             </Link>
-          ) }
+          )}
         </div>
       </div>
     </nav>
